@@ -6,6 +6,9 @@ include_once '../include/conexao.php';
 // captura a acao dos dados
 $acao = $_GET['acao'] ?? '';
 
+// Ativa exceções para erros do MySQLi
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 switch ($acao) {
     case 'inserir':
         $nome = $_POST['nome'] ?? '';
@@ -46,11 +49,13 @@ switch ($acao) {
         $id = $_GET['id'] ?? null;
 
         if ($id) {
-            $sql = "DELETE FROM setor WHERE SetorID = $id";
-            if (mysqli_query($conn, $sql)) {
+            try {
+                $sql = "DELETE FROM setor WHERE SetorID = $id";
+                mysqli_query($conn, $sql);
                 header("Location: ../lista-setores.php?mensagem=Setor excluído com sucesso.");
-            } else {
-                header("Location: ../lista-setores.php?erro=Erro ao excluir setor.");
+            } catch (mysqli_sql_exception $e) {
+                // Mensagem amigável
+                header("Location: ../lista-setores.php?erro=Não foi possível excluir o setor. Verifique se ele está sendo usado em outras partes do sistema.");
             }
         } else {
             header("Location: ../lista-setores.php?erro=ID inválido para exclusão.");

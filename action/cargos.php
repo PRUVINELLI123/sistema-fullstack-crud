@@ -2,6 +2,9 @@
 include_once '../include/logado.php';
 include_once '../include/conexao.php';
 
+// Ativa exceções em erros do MySQLi
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 $acao = $_GET['acao'] ?? '';
 
 switch ($acao) {
@@ -42,11 +45,13 @@ switch ($acao) {
         $id = $_GET['id'] ?? null;
 
         if ($id) {
-            $sql = "DELETE FROM cargos WHERE CargoID = $id";
-            if (mysqli_query($conn, $sql)) {
+            try {
+                $sql = "DELETE FROM cargos WHERE CargoID = $id";
+                mysqli_query($conn, $sql);
                 header("Location: ../lista-cargos.php?mensagem=Cargo excluído com sucesso.");
-            } else {
-                header("Location: ../lista-cargos.php?erro=Erro ao excluir cargo.");
+            } catch (mysqli_sql_exception $e) {
+                // Mensagem personalizada em caso de erro de integridade referencial ou outros
+                header("Location: ../lista-cargos.php?erro=Não é possível excluir este cargo, pois ele está sendo utilizado em outro cadastro.");
             }
         } else {
             header("Location: ../lista-cargos.php?erro=ID inválido para exclusão.");

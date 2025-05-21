@@ -6,8 +6,17 @@ include_once './include/header.php';
 ?>
 <main>
   <div class="container">
+
+    <!-- MENSAGEM DE ERRO OU SUCESSO -->
+    <?php if (isset($_GET['mensagem'])): ?>
+      <div class="alert success"><?php echo htmlspecialchars($_GET['mensagem']); ?></div>
+    <?php elseif (isset($_GET['erro'])): ?>
+      <div class="alert error"><?php echo htmlspecialchars($_GET['erro']); ?></div>
+    <?php endif; ?>
+
     <h1>Lista de Cargos</h1>
     <a href="./salvar-cargos.php" class="btn btn-add">Incluir</a>
+
     <table>
       <thead>
         <tr>
@@ -48,4 +57,5 @@ include_once './include/header.php';
 // include do footer
 include_once './include/footer.php';
 ?>
+
 

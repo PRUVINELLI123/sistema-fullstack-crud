@@ -7,6 +7,14 @@ include_once './include/header.php';
 <main>
   <div class="container">
     <h1>Lista de Setores</h1>
+
+    <!-- MENSAGENS DE ERRO OU SUCESSO -->
+    <?php if (isset($_GET['mensagem'])): ?>
+      <p class="mensagem-sucesso"><?php echo htmlspecialchars($_GET['mensagem']); ?></p>
+    <?php elseif (isset($_GET['erro'])): ?>
+      <p class="mensagem-erro"><?php echo htmlspecialchars($_GET['erro']); ?></p>
+    <?php endif; ?>
+
     <a href="./salvar-setores.php" class="btn btn-add">Incluir</a>
 
     <table>
