@@ -39,7 +39,7 @@ include_once './include/header.php';
                 echo "<td>R$ " . number_format($linha['Preco'], 2, ',', '.') . "</td>";
                 echo "<td>
                         <a href='salvar-produtos.php?id=" . $linha['ProdutoID'] . "' class='btn btn-edit'>Editar</a>
-                        <a href='actions/produtos.php?acao=excluir&id=" . $linha['ProdutoID'] . "' class='btn btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir este produto?\");'>Excluir</a>
+                        <a href='action/produtos.php?acao=excluir&id=" . $linha['ProdutoID'] . "' class='btn btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir este produto?\");'>Excluir</a>
                       </td>";
                 echo "</tr>";
             }

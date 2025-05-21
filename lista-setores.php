@@ -34,7 +34,7 @@ include_once './include/header.php';
                 echo "<td>" . $linha['Cor'] . "</td>";
                 echo "<td>
                         <a href='salvar-setores.php?id=" . $linha['SetorID'] . "' class='btn btn-edit'>Editar</a>
-                        <a href='actions/setores.php?acao=excluir&id=" . $linha['SetorID'] . "' class='btn btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir este setor?\");'>Excluir</a>
+                        <a href='action/setores.php?acao=excluir&id=" . $linha['SetorID'] . "' class='btn btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir este setor?\");'>Excluir</a>
                       </td>";
                 echo "</tr>";
             }

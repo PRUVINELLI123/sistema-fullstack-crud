@@ -30,7 +30,7 @@ $usuario_logado = $_SESSION['usuario'] ?? '';
             <td><?php echo htmlspecialchars($row['email']); ?></td>
             <td>
               <a href="salvar-usuarios.php?id=<?php echo $row['UserID']; ?>" class="btn-acao editar">Editar</a>
-              <a href="./actions/usuarios.php?acao=excluir&id=<?php echo $row['UserID']; ?>" 
+              <a href="./action/usuarios.php?acao=excluir&id=<?php echo $row['UserID']; ?>" 
                  onclick="return confirm('Tem certeza que deseja excluir este usuário?');"
                  class="btn-acao excluir">Excluir</a>
             </td>

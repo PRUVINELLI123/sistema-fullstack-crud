@@ -39,7 +39,7 @@ include_once './include/header.php';
                 echo "<td>" . $linha['DataProducao'] . "</td>";
                 echo "<td>
                         <a href='salvar-producao.php?id=" . $linha['ProducaoID'] . "' class='btn btn-edit'>Editar</a>
-                        <a href='actions/producao.php?acao=excluir&id=" . $linha['ProducaoID'] . "' class='btn btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir esta produção?\");'>Excluir</a>
+                        <a href='action/producao.php?acao=excluir&id=" . $linha['ProducaoID'] . "' class='btn btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir esta produção?\");'>Excluir</a>
                       </td>";
                 echo "</tr>";
             }

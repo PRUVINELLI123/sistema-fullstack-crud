@@ -30,7 +30,7 @@ include_once './include/header.php';
                 echo "<td>" . $linha['Nome'] . "</td>";
                 echo "<td>
                         <a href='salvar-categorias.php?id=" . $linha['CategoriaID'] . "' class='btn btn-edit'>Editar</a>
-                        <a href='actions/categorias.php?acao=excluir&id=" . $linha['CategoriaID'] . "' class='btn btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir esta categoria?\");'>Excluir</a>
+                        <a href='action/categorias.php?acao=excluir&id=" . $linha['CategoriaID'] . "' class='btn btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir esta categoria?\");'>Excluir</a>
                       </td>";
                 echo "</tr>";
             }
