@@ -1,50 +1,47 @@
 <?php
 include_once './include/logado.php';
 include_once './include/conexao.php';
-include_once './include/header.php'; // Adicione esta linha
- 
+include_once './include/header.php';
+
 // Busca todos os usuários cadastrados
-$sql = "SELECT nome, email FROM usuarios";
+$sql = "SELECT UserID, nome, email FROM usuarios";
 $result = $conn->query($sql);
- 
+
 // Usuário logado
 $usuario_logado = $_SESSION['usuario'] ?? '';
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Usuários do Sistema</title>
-    <link rel="stylesheet" href="./assets/style.css">
-    <style>
-        .usuario-logado {
-            color: green;
-            font-weight: bold;
-        }
-        table {
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <!-- O header.php já deve abrir o <header> com as opções de navegação -->
-    <main>
-        <table border="1" cellpadding="8">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($row['nome']); ?></td>
-                        <td><?php echo htmlspecialchars($row['email']); ?></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </main>
-</body>
-</html>
+
+<main>
+  <div class="tela usuarios">
+    <h2>Usuários do Sistema</h2>
+
+    <table border="1" cellpadding="8" style="margin: 0 auto; width: 80%; text-align: center;">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php while ($row = $result->fetch_assoc()) { ?>
+          <tr>
+            <td><?php echo htmlspecialchars($row['nome']); ?></td>
+            <td><?php echo htmlspecialchars($row['email']); ?></td>
+            <td>
+              <a href="salvar-usuarios.php?id=<?php echo $row['UserID']; ?>" class="btn-acao editar">Editar</a>
+              <a href="./actions/usuarios.php?acao=excluir&id=<?php echo $row['UserID']; ?>" 
+                 onclick="return confirm('Tem certeza que deseja excluir este usuário?');"
+                 class="btn-acao excluir">Excluir</a>
+            </td>
+          </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+
+   </div>
+</main>
+
+<?php
+include_once './include/footer.php';
+?>

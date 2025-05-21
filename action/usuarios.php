@@ -18,7 +18,7 @@ switch ($acao) {
         $stmt->bind_param("sss", $email, $nome, $senha);
         $stmt->execute();
 
-        header("Location: ../usuarios/listar.php");
+        header("Location: ../lista-usuarios.php");
         break;
 
     case 'editar':
@@ -31,7 +31,7 @@ switch ($acao) {
         $stmt->bind_param("ssi", $email, $nome, $id);
         $stmt->execute();
 
-        header("Location: ../usuarios/listar.php");
+        header("Location: ../lista-usuarios.php");
         break;
 
     case 'excluir':
@@ -42,7 +42,7 @@ switch ($acao) {
         $stmt->bind_param("i", $id);
         $stmt->execute();
 
-        header("Location: ../usuarios/listar.php");
+        header("Location: ../lista-usuarios.php");
         break;
 
     default:
